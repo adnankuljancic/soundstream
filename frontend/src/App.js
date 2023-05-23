@@ -6,6 +6,8 @@ import { LogIn } from './components/LogIn/LogIn';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { MainNavBar } from './components/NavBar/NavBar';
 import { Register } from './components/Register/Register';
+import { PageNotFound } from './components/PageNotFound/PageNotFound';
+import { LikedSongs } from './components/LikedSongs/LikedSongs';
 
 function App() {
   return (
@@ -18,6 +20,8 @@ function App() {
           <Route path='/' element={ <Home/> }/>
           <Route path='/login' element={ <LogIn/> }/>
           <Route path='/register' element={ <Register/> }/>
+          <Route path='/liked-songs' element={ <LikedSongs/> }/>
+          <Route path='/*' element={ <PageNotFound/> }/>
         </Routes>
       </Router>
     </div>

@@ -14,6 +14,9 @@ export const MainNavBar = () => {
             <LinkContainer to="/">
               <Nav.Link>Home</Nav.Link>
             </LinkContainer>
+            <LinkContainer to="/liked-songs">
+              <Nav.Link>Liked Songs</Nav.Link>
+            </LinkContainer>
             <LinkContainer to="/login">
               <Nav.Link>Log In</Nav.Link>
             </LinkContainer>
