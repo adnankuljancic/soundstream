@@ -12,6 +12,18 @@ async function createUser(req, res) {
   }
 }
 
+async function login(req, res) {
+  try {
+    const { email, password } = req.body;
+
+    const token = await userService.login(email, password);
+    res.status(200).json(token);
+  } catch (error) {
+    console.log(error);
+    res.status(401).json({ error: "Invalid email or password" });
+  }
+}
+
 async function getUserById(req, res) {
   try {
     const { id } = req.params;
@@ -25,4 +37,5 @@ async function getUserById(req, res) {
 module.exports = {
   createUser,
   getUserById,
+  login,
 };
