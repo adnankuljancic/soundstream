@@ -19,6 +19,17 @@ async function createUser(username, email, password) {
   }
 }
 
+async function getUserById(id) {
+  try {
+    const user = await User.findById({ _id: id });
+    return user;
+  } catch (error) {
+    console.log(error);
+    throw new Error("Failed to find the user with the id");
+  }
+}
+
 module.exports = {
   createUser,
+  getUserById,
 };
