@@ -4,7 +4,7 @@ import "./LogIn.css";
 
 export const LogIn = () => {
   return (
-    <div className="container">
+    <div className="container" id="loginContainer">
       <h1 className="my-5 text-center">Log in to SoundStream</h1>
       <Form>
         <Form.Group className="mb-3" controlId="formBasicEmail">

@@ -27,7 +27,7 @@ export const Register = () => {
   };
 
   return (
-    <div className="container">
+    <div className="container" id="registerContainer">
       <h1 className="my-5 text-center">Register for SoundStream</h1>
       <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3" controlId="formBasicFullName">
