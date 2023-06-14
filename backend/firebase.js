@@ -1,7 +1,6 @@
 // Import the functions you need from the SDKs you need
 require("dotenv").config();
 const { initializeApp } = require("firebase/app");
-const { getAnalytics } = require("firebase/analytics");
 const { getStorage } = require("firebase/storage");
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -20,12 +19,9 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
-// const storage = getStorage(firebase);
 const storage = getStorage(app);
 
 module.exports = {
-  firebase,
-  analytics,
+  app,
   storage,
 };
