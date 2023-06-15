@@ -6,9 +6,10 @@ async function uploadSong(song, audioFile) {
     title = song.title;
     artist = song.artist;
     genre = song.genre;
-    audioUrl = await firebaseService.uploadFile(audioFile);
+    audioUrl = await firebaseService.uploadFile(audioFile, title);
+    var newSong;
     if (audioUrl) {
-      const newSong = await Song.create({
+      newSong = await Song.create({
         title,
         artist,
         genre,
@@ -23,7 +24,18 @@ async function uploadSong(song, audioFile) {
   }
 }
 
-async function removeSong() {}
+async function removeSong(songId) {
+  try {
+    const songToRemove = await Song.findByIdAndDelete({ _id: songId });
+    console.log(songToRemove);
+    if (songToRemove) {
+      await firebaseService.removeFile(songToRemove.title);
+    }
+  } catch (error) {
+    console.error("removeSong: " + error);
+    throw new Error("Failed to remove the Song");
+  }
+}
 
 module.exports = {
   uploadSong,
