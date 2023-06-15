@@ -20,7 +20,20 @@ async function uploadSong(req, res) {
   }
 }
 
-async function removeSong(req, res) {}
+async function removeSong(req, res) {
+  try {
+    const songId = req.body.id;
+    console.log(songId);
+    await songService.removeSong(songId);
+
+    res
+      .status(200)
+      .json({ message: "Song and associated file removed successfully." });
+  } catch (error) {
+    console.error(error);
+    res.status(404).json({ error: "Failed to remove the song." });
+  }
+}
 
 module.exports = {
   uploadSong,
