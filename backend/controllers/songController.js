@@ -2,7 +2,8 @@ const songService = require("../services/songService");
 
 async function uploadSong(req, res) {
   try {
-    var file = req.file;
+    const file = req.file;
+    const userId = req.body.id;
     var fileMimeType = file.mimetype;
     if (!fileMimeType.startsWith("audio")) {
       return res.status(400).json({ error: "Only audio files are allowed" });
@@ -13,7 +14,7 @@ async function uploadSong(req, res) {
       genre: req.body.genre,
     };
     console.log(song);
-    var uploadedSong = await songService.uploadSong(song, file);
+    var uploadedSong = await songService.uploadSong(song, file, userId);
     res.status(200).json(uploadedSong);
   } catch (error) {
     res.status(404).json({ error: "Failed to upload the file." });
@@ -35,7 +36,17 @@ async function removeSong(req, res) {
   }
 }
 
+async function getAllSongs(req, res) {
+  try {
+    const songs = await songService.getAllSongs();
+    res.status(200).json(songs);
+  } catch (error) {
+    res.status(404).json({ error: "Failed to fetch the songs." });
+  }
+}
+
 module.exports = {
   uploadSong,
   removeSong,
+  getAllSongs,
 };

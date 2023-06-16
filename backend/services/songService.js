@@ -1,12 +1,12 @@
 const Song = require("../models/Song");
 const firebaseService = require("./firebaseService");
 
-async function uploadSong(song, audioFile) {
+async function uploadSong(song, audioFile, userId) {
   try {
     title = song.title;
     artist = song.artist;
     genre = song.genre;
-    audioUrl = await firebaseService.uploadFile(audioFile, title);
+    audioUrl = await firebaseService.uploadFile(audioFile, title, userId);
     var newSong;
     if (audioUrl) {
       newSong = await Song.create({
@@ -14,6 +14,7 @@ async function uploadSong(song, audioFile) {
         artist,
         genre,
         audioUrl,
+        user: userId,
       });
     }
 
@@ -37,7 +38,17 @@ async function removeSong(songId) {
   }
 }
 
+async function getAllSongs() {
+  try {
+    const songs = await Song.find();
+    return songs;
+  } catch (error) {
+    throw new Error("Failed to fetch songs.");
+  }
+}
+
 module.exports = {
   uploadSong,
   removeSong,
+  getAllSongs,
 };

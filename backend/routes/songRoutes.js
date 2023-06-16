@@ -5,7 +5,8 @@ const songController = require("../controllers/songController");
 
 const router = express.Router();
 
-router.post("/upload", upload.single("file"), songController.uploadSong);
-router.delete("/remove", songController.removeSong);
+router.post("/", upload.single("file"), songController.uploadSong);
+router.delete("/", songController.removeSong);
+router.get("/", songController.getAllSongs);
 
 module.exports = router;
