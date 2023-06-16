@@ -39,6 +39,11 @@ async function removeSong(req, res) {
 async function getAllSongs(req, res) {
   try {
     const songs = await songService.getAllSongs();
+    if (!songs) {
+      res.status(404).json({ error: "The list is empty." });
+      return;
+    }
+    console.log(songs);
     res.status(200).json(songs);
   } catch (error) {
     res.status(404).json({ error: "Failed to fetch the songs." });
