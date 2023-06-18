@@ -3,13 +3,13 @@ const { DateTime } = require("luxon");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
-async function createUser(username, email, password) {
+async function createUser(fullName, email, password) {
   var createdAt = DateTime.now().toISO();
   var updatedAt = DateTime.now().toISO();
   const passwordHash = await bcrypt.hash(password, 10);
   try {
     const newUser = await User.create({
-      username,
+      fullName,
       email,
       passwordHash,
       createdAt,
@@ -44,7 +44,6 @@ async function login(email, password) {
     const accessToken = jwt.sign({ userId: user._id }, process.env.JWT_SECRET);
     return accessToken;
   } catch (error) {
-    console.log(error);
     throw new Error("Failed to login");
   }
 }
