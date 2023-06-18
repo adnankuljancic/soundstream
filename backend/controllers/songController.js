@@ -50,8 +50,25 @@ async function getAllSongs(req, res) {
   }
 }
 
+async function getSongsByUserId(req, res) {
+  try {
+    console.log(req.params.userId);
+    const songs = await songService.getSongsByUserId(req.params.userId);
+    console.log(songs);
+    if (!songs) {
+      res.status(404).json({ error: "The list is empty." });
+      return;
+    }
+    res.status(200).json(songs);
+  } catch (error) {
+    console.log(error);
+    res.status(404).json({ error: "Failed to fetch the songs." });
+  }
+}
+
 module.exports = {
   uploadSong,
   removeSong,
   getAllSongs,
+  getSongsByUserId,
 };
