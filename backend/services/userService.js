@@ -41,7 +41,10 @@ async function login(email, password) {
       throw new Error("Invalid password or email");
     }
 
-    const accessToken = jwt.sign({ userId: user._id }, process.env.JWT_SECRET);
+    const accessToken = jwt.sign(
+      { userId: user._id, fullName: user.fullName },
+      process.env.JWT_SECRET
+    );
     return accessToken;
   } catch (error) {
     throw new Error("Failed to login");
