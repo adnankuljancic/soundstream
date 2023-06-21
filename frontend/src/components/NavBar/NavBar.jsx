@@ -1,19 +1,18 @@
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import {LinkContainer} from 'react-router-bootstrap';
-import {useState,useEffect,useContext} from 'react';
-import {useNavigate} from 'react-router-dom';
-import UserContext from '../../context/UserContext';
+import Container from "react-bootstrap/Container";
+import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
+import { LinkContainer } from "react-router-bootstrap";
+import { useState, useEffect, useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import UserContext from "../../context/UserContext";
 
 export const MainNavBar = () => {
-  const [isLoggedIn, setIsLoggedIn]=useState(false);
-  const {userData, setUserData}=useContext(UserContext);
-  const navigate=useNavigate();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const { userData, setUserData } = useContext(UserContext);
+  const navigate = useNavigate();
 
   useEffect(() => {
     console.log(userData);
-    
   }, [userData]);
 
   const handleLogout = () => {
@@ -33,17 +32,16 @@ export const MainNavBar = () => {
             <LinkContainer to="/">
               <Nav.Link>Home</Nav.Link>
             </LinkContainer>
-            
-            {userData!=null && (
-              <LinkContainer to="/liked-songs">
+
+            {userData != null && (
+              <LinkContainer to="/my-songs">
                 <Nav.Link>My Songs</Nav.Link>
               </LinkContainer>
             )}
-            {userData!=null ? (
+            {userData != null ? (
               <>
                 <Nav.Link onClick={handleLogout}>Logout</Nav.Link>
                 <Nav.Link>{userData.fullName}</Nav.Link>
-
               </>
             ) : (
               <>
@@ -60,4 +58,4 @@ export const MainNavBar = () => {
       </Container>
     </Navbar>
   );
-}
+};

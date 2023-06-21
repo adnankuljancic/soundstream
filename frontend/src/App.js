@@ -6,7 +6,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { MainNavBar } from "./components/NavBar/NavBar";
 import { Register } from "./components/Register/Register";
 import { PageNotFound } from "./components/PageNotFound/PageNotFound";
-import { LikedSongs } from "./components/LikedSongs/LikedSongs";
+import { MySongs } from "./components/MySongs/MySongs";
 import UserContext from "./context/UserContext";
 import { useState, useEffect } from "react";
 import jwt_decode from "jwt-decode";
@@ -41,7 +41,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<LogIn />} />
             <Route path="/register" element={<Register />} />
-            <Route path="/liked-songs" element={<LikedSongs />} />
+            <Route path="/my-songs" element={<MySongs />} />
             <Route path="/*" element={<PageNotFound />} />
           </Routes>
         </UserContext.Provider>

@@ -1,4 +1,4 @@
-import "./LikedSongs.css";
+import "./MySongs.css";
 import { useEffect, useState } from "react";
 import AudioCard from "../AudioCard/AudioCard";
 import axios from "axios";
@@ -8,7 +8,7 @@ import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import jwt_decode from "jwt-decode";
 
-export const LikedSongs = () => {
+export const MySongs = () => {
   const [usersSongs, setUsersSongs] = useState([]);
   const [show, setShow] = useState(false);
   const [title, setTitle] = useState();
