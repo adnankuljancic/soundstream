@@ -41,9 +41,6 @@ async function removeSong(songId) {
 async function getAllSongs() {
   try {
     const songs = await Song.find();
-    if (songs.length === 0) {
-      return null;
-    }
     return songs;
   } catch (error) {
     console.log(error);
@@ -54,10 +51,7 @@ async function getAllSongs() {
 async function getSongsByUserId(id) {
   try {
     const userSongs = await Song.find({ user: id });
-    console.log("Service: " + userSongs);
-    if (userSongs.length === 0) {
-      return null;
-    }
+
     return userSongs;
   } catch (error) {
     throw new Error("Failed to fetch songs.");

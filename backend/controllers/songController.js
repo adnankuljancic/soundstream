@@ -17,13 +17,14 @@ async function uploadSong(req, res) {
     var uploadedSong = await songService.uploadSong(song, file, userId);
     res.status(200).json(uploadedSong);
   } catch (error) {
+    console.log(error);
     res.status(404).json({ error: "Failed to upload the file." });
   }
 }
 
 async function removeSong(req, res) {
   try {
-    const songId = req.body.id;
+    const songId = req.params.songId;
     console.log(songId);
     await songService.removeSong(songId);
 
@@ -39,10 +40,6 @@ async function removeSong(req, res) {
 async function getAllSongs(req, res) {
   try {
     const songs = await songService.getAllSongs();
-    if (!songs) {
-      res.status(404).json({ error: "The list is empty." });
-      return;
-    }
     console.log(songs);
     res.status(200).json(songs);
   } catch (error) {
@@ -54,14 +51,8 @@ async function getSongsByUserId(req, res) {
   try {
     console.log(req.params.userId);
     const songs = await songService.getSongsByUserId(req.params.userId);
-    console.log(songs);
-    if (!songs) {
-      res.status(404).json({ error: "The list is empty." });
-      return;
-    }
     res.status(200).json(songs);
   } catch (error) {
-    console.log(error);
     res.status(404).json({ error: "Failed to fetch the songs." });
   }
 }
