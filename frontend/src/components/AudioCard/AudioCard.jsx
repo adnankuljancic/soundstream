@@ -9,7 +9,10 @@ const AudioCard = ({ song, onRemove }) => {
     <div className="card">
       <div className="card-header d-flex justify-content-end sm ">
         {onRemove && (
-          <button className="btn btn-danger" onClick={() => onRemove(_id)}>
+          <button
+            className="btn btn-danger btn-sm"
+            onClick={() => onRemove(_id)}
+          >
             Remove
           </button>
         )}

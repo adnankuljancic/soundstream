@@ -22,7 +22,7 @@ export const Home = () => {
   return (
     <div className="container my-3">
       <h1 className="mt-5">Welcome to SoundStream!</h1>
-      <p className="mb-5">Select a playlist and enjoy listening.</p>
+      <p className="mb-5">Select a song and enjoy listening.</p>
 
       <CardGroup>
         <div className="container">

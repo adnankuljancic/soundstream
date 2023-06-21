@@ -63,7 +63,6 @@ export const Register = () => {
           <Form.Label>Full Name</Form.Label>
           <Form.Control
             type="text"
-            placeholder="Enter your full name"
             value={fullName}
             onChange={handleFullNameChange}
             required
@@ -74,7 +73,6 @@ export const Register = () => {
           <Form.Label>Email address</Form.Label>
           <Form.Control
             type="email"
-            placeholder="Enter email"
             value={email}
             onChange={handleEmailChange}
             required
@@ -85,7 +83,6 @@ export const Register = () => {
           <Form.Label>Password</Form.Label>
           <Form.Control
             type="password"
-            placeholder="Password"
             value={password}
             onChange={handlePasswordChange}
             required
@@ -96,7 +93,6 @@ export const Register = () => {
           <Form.Label>Confirm Password</Form.Label>
           <Form.Control
             type="password"
-            placeholder="Confirm Password"
             value={confirmPassword}
             onChange={handleConfirmPasswordChange}
             required

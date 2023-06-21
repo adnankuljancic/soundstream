@@ -33,16 +33,17 @@ export const LogIn = () => {
       .post(`${process.env.REACT_APP_BASE_URL}/users/login`, credentials)
       .then((res) => {
         const token = res.data;
-        console.log(token);
-        localStorage.setItem("token", token);
-        const decoded = jwt_decode(token);
-        localStorage.setItem("userId", decoded.userId);
-        setUserData({
-          fullName: decoded.fullName,
-          userId: decoded.userId,
-          token: token,
-        });
-        navigate("/");
+        if (token) {
+          localStorage.setItem("token", token);
+          const decoded = jwt_decode(token);
+          localStorage.setItem("userId", decoded.userId);
+          setUserData({
+            fullName: decoded.fullName,
+            userId: decoded.userId,
+            token: token,
+          });
+          navigate("/");
+        }
       })
       .catch((error) => {
         console.log(error.response.data.error);
@@ -57,7 +58,6 @@ export const LogIn = () => {
           <Form.Label>Email address</Form.Label>
           <Form.Control
             type="email"
-            placeholder="Enter email"
             value={email}
             onChange={handleEmailChange}
             required
@@ -68,7 +68,6 @@ export const LogIn = () => {
           <Form.Label>Password</Form.Label>
           <Form.Control
             type="password"
-            placeholder="Password"
             value={password}
             onChange={handlePasswordChange}
             required
