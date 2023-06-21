@@ -3,11 +3,11 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import "./Register.css";
 import axios from "axios";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export const Register = () => {
-  const [fullName,setFullName]=useState("");
-  const [email,setEmail]=useState("");
+  const [fullName, setFullName] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [passwordError, setPasswordError] = useState("");
@@ -16,7 +16,7 @@ export const Register = () => {
   const handleFullNameChange = (e) => {
     setFullName(e.target.value);
   };
-  
+
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
   };
@@ -29,25 +29,27 @@ export const Register = () => {
     setConfirmPassword(e.target.value);
   };
 
-  const handleSubmit =async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (password !== confirmPassword) {
       setPasswordError("Passwords do not match");
     } else {
-      try{
-        const credentials={
-          fullName:fullName,
-          email:email,
-          password:password
+      try {
+        const credentials = {
+          fullName: fullName,
+          email: email,
+          password: password,
         };
 
-        const response = await axios.post('http://localhost:3001/users/register', credentials);
+        const response = await axios.post(
+          `${process.env.REACT_APP_BASE_URL}/users/register`,
+          credentials
+        );
 
         console.log(response.data);
         navigate("/login");
-
-      }catch(error){
+      } catch (error) {
         console.log(error);
       }
     }
@@ -59,12 +61,24 @@ export const Register = () => {
       <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3" controlId="formBasicFullName">
           <Form.Label>Full Name</Form.Label>
-          <Form.Control type="text" placeholder="Enter your full name" value={fullName} onChange={handleFullNameChange} required />
+          <Form.Control
+            type="text"
+            placeholder="Enter your full name"
+            value={fullName}
+            onChange={handleFullNameChange}
+            required
+          />
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>
-          <Form.Control type="email" placeholder="Enter email" value={email} onChange={handleEmailChange} required />
+          <Form.Control
+            type="email"
+            placeholder="Enter email"
+            value={email}
+            onChange={handleEmailChange}
+            required
+          />
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formBasicPassword">

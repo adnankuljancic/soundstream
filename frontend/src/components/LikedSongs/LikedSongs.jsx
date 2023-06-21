@@ -26,7 +26,7 @@ export const LikedSongs = () => {
         return;
       }
       await axios
-        .get(`http://localhost:3001/songs/${userId}`)
+        .get(`${process.env.REACT_APP_BASE_URL}/songs/${userId}`)
         .then((response) => {
           const usersSongs = response.data;
           setUsersSongs(usersSongs);
@@ -65,7 +65,7 @@ export const LikedSongs = () => {
     formData.append("id", decoded.userId);
 
     await axios
-      .post(`http://localhost:3001/songs`, formData)
+      .post(`${process.env.REACT_APP_BASE_URL}/songs`, formData)
       .then((response) => {
         const uploadedSong = response.data;
         setUsersSongs([...usersSongs, uploadedSong]);
@@ -77,7 +77,7 @@ export const LikedSongs = () => {
 
   const removeSong = (songId) => {
     axios
-      .delete(`http://localhost:3001/songs/${songId}`)
+      .delete(`${process.env.REACT_APP_BASE_URL}/songs/${songId}`)
       .then((response) => {
         setUsersSongs(usersSongs.filter((obj) => obj._id !== songId));
         console.log("DELETED SUCCESSFULLY");
