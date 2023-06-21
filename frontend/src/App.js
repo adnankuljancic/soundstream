@@ -9,6 +9,7 @@ import { PageNotFound } from "./components/PageNotFound/PageNotFound";
 import { LikedSongs } from "./components/LikedSongs/LikedSongs";
 import UserContext from "./context/UserContext";
 import { useState, useEffect } from "react";
+import jwt_decode from "jwt-decode";
 
 function App() {
   const [userData, setUserData] = useState(null);
@@ -16,9 +17,12 @@ function App() {
   useEffect(() => {
     const loggedIn = async () => {
       const token = localStorage.getItem("token");
+      const decoded = jwt_decode(token);
+
       if (token) {
         setUserData({
-          fullName: "Tarik Suljic",
+          fullName: decoded.fullName,
+          userId: decoded.userId,
           token: token,
         });
         return true;

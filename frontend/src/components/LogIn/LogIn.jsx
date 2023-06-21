@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useState,useContext } from "react";
 import UserContext from '../../context/UserContext';
+import jwt_decode from 'jwt-decode';
 
 export const LogIn = () => {
   const navigate=useNavigate();
@@ -34,8 +35,11 @@ export const LogIn = () => {
         const token=res.data;
         console.log(token);
         localStorage.setItem("token",token);
+        const decoded=jwt_decode(token);
+        localStorage.setItem("userId",decoded.userId);
         setUserData({
-          fullName:"Tarik Suljic",
+          fullName:decoded.fullName,
+          userId:decoded.userId,
           token:token
         });
         navigate("/");

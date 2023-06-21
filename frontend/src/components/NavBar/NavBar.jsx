@@ -12,11 +12,14 @@ export const MainNavBar = () => {
   const navigate=useNavigate();
 
   useEffect(() => {
+    console.log(userData);
     
   }, [userData]);
 
   const handleLogout = () => {
     setUserData(null);
+    localStorage.removeItem("token");
+    localStorage.removeItem("userId");
     navigate("/");
   };
 
