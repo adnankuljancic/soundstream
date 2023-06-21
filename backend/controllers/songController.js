@@ -17,7 +17,6 @@ async function uploadSong(req, res) {
     var uploadedSong = await songService.uploadSong(song, file, userId);
     res.status(200).json(uploadedSong);
   } catch (error) {
-    console.log(error);
     res.status(404).json({ error: "Failed to upload the file." });
   }
 }
